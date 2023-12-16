@@ -4,7 +4,7 @@ import { signUp } from '../../utilities/users-service';
 
 export default class SignUpForm extends Component {
     state = {
-        name: '',
+        fullName: '',
         email: '',
         password: '',
         confirm: '',
@@ -22,7 +22,7 @@ export default class SignUpForm extends Component {
         event.preventDefault();
         try {
             const formData = {
-                name: this.state.name,
+                fullName: this.state.fullName,
                 email: this.state.email,
                 password: this.state.password
             };
@@ -42,8 +42,8 @@ export default class SignUpForm extends Component {
           <div>
             <div className="form-container">
               <form autoComplete="off" onSubmit={this._handleSubmit}>
-                <label>Name</label>
-                <input type="text" name="name" value={this.state.name} onChange={this._handleChange} required />
+                <label>Full Name</label>
+                <input type="text" name="fullName" value={this.state.fullName} onChange={this._handleChange} required />
                 <label>Email</label>
                 <input type="email" name="email" value={this.state.email} onChange={this._handleChange} required />
                 <label>Password</label>

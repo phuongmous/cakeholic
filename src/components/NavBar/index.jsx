@@ -13,15 +13,15 @@ const NavBar = ({user, setUser}) => {
                 Order History
             </Link>
             |
-            <Link to="/orders/new">
-                New Order            
+            <Link to="/shop">
+                Shopping Page           
             </Link>
             |
             <span>
                 Welcome, { user.name }
             </span>
             <Link to="" onClick={ _handleLogOut }>
-                Log Out
+                Log Out 
             </Link>
         </nav>
     );

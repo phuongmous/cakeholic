@@ -9,6 +9,7 @@ const create = async (req, res) => {
         const token = createJWT(user);
         res.json(token);
     } catch (err) {
+        console.error(err);
         res.status(400).json(err);
     }
 };

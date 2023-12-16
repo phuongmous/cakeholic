@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { getUser } from '../../utilities/users-service';
 
-import NewOrderPage from '../NewOrderPage';
+import ShoppingPage from '../ShoppingPage';
 import AuthPage from '../AuthPage';
 import OrderHistoryPage from '../OrderHistoryPage';
 import NavBar from '../../components/NavBar';
@@ -19,7 +19,7 @@ export default function App() {
         <>
           <NavBar user={ user } setUser={ setUser } />
           <Routes>
-            <Route path="/orders/new" element={ <NewOrderPage /> } />
+            <Route path="/shop" element={ <ShoppingPage /> } />
             <Route path="/orders" element={ <OrderHistoryPage /> } />
           </Routes>
         </>
