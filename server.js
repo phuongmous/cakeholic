@@ -30,7 +30,7 @@ app.listen(port, () => {
 app.use('/api/users', require('./routes/api/users'));
 
 const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
+app.use('/api/items', require('./routes/api/items'));
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
 
 // This needs to be the last route:

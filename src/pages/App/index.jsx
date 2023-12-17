@@ -7,6 +7,7 @@ import ShoppingPage from '../ShoppingPage';
 import AuthPage from '../AuthPage';
 import OrderHistoryPage from '../OrderHistoryPage';
 import NavBar from '../../components/NavBar';
+import HomePage from '../HomePage';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ export default function App() {
         <>
           <NavBar user={ user } setUser={ setUser } />
           <Routes>
+            <Route path="/" element={ <HomePage /> } />
             <Route path="/shop" element={ <ShoppingPage /> } />
             <Route path="/orders" element={ <OrderHistoryPage /> } />
           </Routes>
