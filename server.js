@@ -28,8 +28,10 @@ app.listen(port, () => {
 
 // Define other routes HERE, before the default
 app.use('/api/users', require('./routes/api/users'));
+
 const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
 
 // This needs to be the last route:
 // All unrecognised GET requests get served the home page
