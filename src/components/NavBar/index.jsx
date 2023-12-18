@@ -15,15 +15,16 @@ export default function NavBar ({user, setUser, cart}) {
                 Home
             </Link>
             |
-            <Link to="/orders">
-                Order History
-            </Link>
-            |
             <Link to="/shop">
                 Shopping Page           
             </Link>
             |
             <h1>CAKE</h1>
+            |
+            <Link to="/profile">
+                User Profile
+            </Link>
+            |
             <Link to="" onClick={ _handleLogOut }>
                 Log Out 
             </Link>

@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import * as itemsAPI from '../../utilities/items-api';
 import * as ordersAPI from '../../utilities/orders-api';
 import CakeList from '../../components/CakeList';
-import CartModel from '../../components/CartModel';
+import CartList from '../../components/CartList';
 
 export default function ShoppingPage({ user, setUser }) {
   const [cakeItems, setCakeItems] = useState([]);
@@ -49,7 +49,7 @@ export default function ShoppingPage({ user, setUser }) {
 
   const handleCheckout = async () => {
     await ordersAPI.checkout();
-    navigate('/orders');
+    navigate('/profile');
   };
 
   const handleSearch = (event) => {
@@ -89,7 +89,7 @@ export default function ShoppingPage({ user, setUser }) {
         }
         handleAddToOrder={handleAddToOrder}
       />
-      <CartModel order={cart} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout} />
+      <CartList order={cart} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout} />
     </div>
   );
 }

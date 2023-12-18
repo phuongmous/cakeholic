@@ -1,5 +1,5 @@
 import CartItem from '../CartItem';
-export default function CartModel ({ order, handleChangeQty, handleCheckOut }) {
+export default function CartList ({ order, handleChangeQty, handleCheckout }) {
     if (!order) return null;
 
     const cartItems = order.cartItems.map(item =>
@@ -21,7 +21,7 @@ export default function CartModel ({ order, handleChangeQty, handleCheckOut }) {
                 }
                 <span>{new Date(order.updatedAt).toLocaleDateString()}</span>
             </div>
-            
+
             <div>
             {cartItems.length ?
             <> 
@@ -32,7 +32,7 @@ export default function CartModel ({ order, handleChangeQty, handleCheckOut }) {
                     <span>TOTAL&nbsp;&nbsp;</span>
                     :
                     <button
-                        onClick={handleCheckOut}
+                        onClick={handleCheckout}
                         disabled={!cartItems.length}
                     >CHECKOUT</button>
                 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { getUser } from '../../utilities/users-service';
 
@@ -8,6 +8,7 @@ import AuthPage from '../AuthPage';
 import OrderHistoryPage from '../OrderHistoryPage';
 import NavBar from '../../components/NavBar';
 import HomePage from '../HomePage';
+import UserProfilePage from '../UserProfilePage';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={ <HomePage /> } />
             <Route path="/shop" element={ <ShoppingPage /> } />
+            <Route path='/profile' element={ <UserProfilePage /> } />
             <Route path="/orders" element={ <OrderHistoryPage /> } />
           </Routes>
         </>

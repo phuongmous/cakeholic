@@ -6,6 +6,6 @@ const usersController = require('../../controllers/api/users');
 // These routes are "prefixed" with /api/users
 router.post('/', usersController.create);
 router.post('/login', usersController.login);
-
+router.get('/profile', ensureLoggedIn, usersController.getInfo);
 router.get('/check-token', ensureLoggedIn, usersController.checkToken);
 module.exports = router;

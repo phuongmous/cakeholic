@@ -28,6 +28,16 @@ const login = async (req, res) => {
     }
 }
 
+const getInfo = async (req, res) => {
+    try {
+      const user = await User.findOne(req.body.user);
+      res.json(user);
+    } catch (error) {
+      console.error('Error fetching user information:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
 const checkToken = (req, res) => {
     // req.user will always be there for you when a token is sent
     console.log('req.user', req.user);
@@ -46,6 +56,7 @@ function createJWT(user) {
 module.exports = {
     create,
     login,
-    checkToken
+    getInfo,
+    checkToken  
 };
 
