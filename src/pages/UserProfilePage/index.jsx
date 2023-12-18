@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import UserInfo from '../../components/UserInfo';
 import OrderHistory from '../../components/OrderHistory';
-import * as userAPI from '../../utilities/users-api';
 import * as ordersAPI from '../../utilities/orders-api';
 
-export default function UserProfilePage({order, activeOrder, setActiveOrder}) {
-  const [user, setUser] = useState(null);
+export default function UserProfilePage({user, order}) {
   const [orderHistory, setOrderHistory] = useState([]);
 
   useEffect(() => {
-    // Fetch user information
-    const fetchUserData = async () => {
-      try {
-        const userData = await userAPI.getUserInfo();
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user information:', error);
-      }
-    };
-
     // Fetch order history
     const fetchOrderHistory = async () => {
       try {
@@ -29,8 +17,6 @@ export default function UserProfilePage({order, activeOrder, setActiveOrder}) {
         console.error('Error fetching order history:', error);
       }
     };
-
-    fetchUserData();
     fetchOrderHistory();
   }, []);
 
@@ -41,8 +27,6 @@ export default function UserProfilePage({order, activeOrder, setActiveOrder}) {
       <OrderHistory 
       orderHistory={orderHistory} 
       order={order} 
-      activeOrder={activeOrder}
-      setActiveOrder={setActiveOrder}
       />
     </div>
   );

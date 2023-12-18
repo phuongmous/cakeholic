@@ -1,7 +1,7 @@
 import React from 'react';
 import OrderHistoryItem from '../OrderHistoryItem';
 
-export default function OrderHistory ({orderHistory, activeOrder, setActiveOrder}) {
+export default function OrderHistory ({orderHistory}) {
     return (
     <div>
       <h3>Order History</h3>
@@ -11,8 +11,6 @@ export default function OrderHistory ({orderHistory, activeOrder, setActiveOrder
             <OrderHistoryItem
               key={order._id}
               order={order}
-              activeOrder={activeOrder}
-              setActiveOrder={setActiveOrder}
             />
           ))}
         </div>

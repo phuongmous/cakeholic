@@ -4,30 +4,30 @@ import * as itemsAPI from '../../utilities/items-api';
 import * as ordersAPI from '../../utilities/orders-api';
 
 export default function NavBar ({user, setUser, cart}) {
-    const _handleLogOut = () => {
+    const handleLogOut = () => {
         userService.logOut();
         setUser(null);
-    }
-
-    return (
+      };
+    
+      return (
         <nav>
-            <Link to="/">
-                Home
-            </Link>
+            <Link to="/">Home</Link>
+            | 
+            <Link to="/shop">Shopping Page</Link> 
+            | 
+            <h1>CAKE</h1> 
             |
-            <Link to="/shop">
-                Shopping Page           
-            </Link>
-            |
-            <h1>CAKE</h1>
-            |
-            <Link to="/profile">
-                User Profile
-            </Link>
-            |
-            <Link to="" onClick={ _handleLogOut }>
-                Log Out 
-            </Link>
+            {' '}
+            {user ? (
+            <>
+                <Link to="/profile">User Profile</Link> | {' '}
+                <Link to="/" onClick={handleLogOut}>
+                Log Out
+                </Link>
+            </>
+            ) : (
+                <Link to="/login">Login/Signup</Link>
+            )}
         </nav>
-    );
-};
+      );
+    }

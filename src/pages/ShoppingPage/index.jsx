@@ -34,12 +34,21 @@ export default function ShoppingPage({ user, setUser }) {
 
   useEffect(() => {
     fetchData();
+    if (user) {
     getCart();
-  }, [location.search]);
+    }
+  }, [location.search, user]);
 
   const handleAddToOrder = async (itemId) => {
-    const updatedCart = await ordersAPI.addItemToCart(itemId);
-    setCart(updatedCart);
+    console.log('User:', user); // Log user to check its value
+    if (user) {
+      const updatedCart = await ordersAPI.addItemToCart(itemId);
+      setCart(updatedCart);
+    } else {
+      console.log('Redirecting to login'); // Log to check if this block is executed
+      navigate('/login');
+    }
+    
   };
 
   const handleChangeQty = async (itemId, newQty) => {
