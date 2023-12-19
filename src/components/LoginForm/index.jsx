@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
     email: '',
@@ -37,9 +36,11 @@ export default function LoginForm({ setUser }) {
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          <br></br>
           <label>Password</label>
           <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
+          <br></br>
+          <button type="submit" className="bg-black text-yellow py-2 px-4 rounded hover:bg-yellow hover:text-black">LOG IN</button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>

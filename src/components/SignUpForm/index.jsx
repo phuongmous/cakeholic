@@ -38,22 +38,33 @@ export default class SignUpForm extends Component {
     render() {
         const disable = this.state.password !== this.state.confirm;
         return (
-          <div>
-            <div className="form-container">
-              <form autoComplete="off" onSubmit={this._handleSubmit}>
-                <label>Full Name</label>
-                <input type="text" name="fullName" value={this.state.fullName} onChange={this._handleChange} required />
-                <label>Email</label>
-                <input type="email" name="email" value={this.state.email} onChange={this._handleChange} required />
-                <label>Password</label>
-                <input type="password" name="password" value={this.state.password} onChange={this._handleChange} required />
-                <label>Confirm</label>
-                <input type="password" name="confirm" value={this.state.confirm} onChange={this._handleChange} required />
-                <button type="submit" disabled={disable}>SIGN UP</button>
-              </form>
+          <div className="sm:mx-[10rem] md:mx-[13rem] lg:mx-[20rem]">
+              <div>
+                <form autoComplete="off" onSubmit={this._handleSubmit} className="flex flex-col">
+                  <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+                    <label className="mb-2">Full Name</label>
+                    <input className="sm:basis-2/4 md:basis-3/4 form-input border border-black rounded text-base" type="text" name="fullName" value={this.state.fullName} onChange={this._handleChange} required />
+                  </div>
+
+                  <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+                    <label className="mb-2">Email</label>
+                    <input className="sm:basis-2/4 md:basis-3/4 form-input border border-black rounded" type="email" name="email" value={this.state.email} onChange={this._handleChange} required />
+                  </div>
+
+                  <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+                    <label className="mb-2">Password</label>
+                    <input className="basis-2/4 md:basis-3/4 form-input border border-black rounded" type="password" name="password" value={this.state.password} onChange={this._handleChange} required />
+                  </div>
+
+                  <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+                    <label className="mb-2">Confirm</label>
+                    <input className="basis-2/4 md:basis-3/4 form-input border border-black rounded" type="password" name="confirm" value={this.state.confirm} onChange={this._handleChange} required />
+                  </div>
+                  <button type="submit" disabled={disable} className="w-2/5 m-auto bg-black text-yellow py-2 px-4 rounded hover:bg-yellow hover:text-black">SIGN UP</button>
+                </form>
+                <p className="error-message">&nbsp;{this.state.error}</p>
+              </div>
             </div>
-            <p className="error-message">&nbsp;{this.state.error}</p>
-          </div>
         );
     }
 }

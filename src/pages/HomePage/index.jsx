@@ -13,7 +13,7 @@ import backgroundImage from '../../images/background-image.jpg';
 
 const carouselImages = [carousel1, carousel2, carousel3, carousel4];
 
-export default function HomePage() {
+export default function HomePage({handleAddToOrder}) {
   const [allCakeItems, setAllCakeItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isContentExpanded, setIsContentExpanded] = useState(false);
@@ -69,9 +69,9 @@ export default function HomePage() {
             { image: muffins, category: 'Muffins' },
             { image: macarons, category: 'Macarons' },
           ].map((item, index) => ( 
-            <div key={index} className="flex flex-col items-center m-3">
-              <img src={item.image} alt={item.category} className="w-32 h-32 mb-2" />
-              <Link to={`/shop?category=${item.category}`} className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-3 py-2 text-xl font-medium">
+            <div key={index} className="flex flex-col items-center m-3 transition-transform transform hover:scale-110">
+              <Link to={`/shop?category=${item.category}`} className="text-black px-3 py-2 text-xl font-medium">
+                <img src={item.image} alt={item.category} className="w-32 h-32 mb-2" />
                 {item.category}
               </Link>
             </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
               As you navigate the enchanting displays, you'll find yourself surrounded by a harmonious blend of aromas, colors, and textures, igniting a sense of anticipation and delight. Whether you're celebrating a special occasion, satisfying a sweet craving, or simply seeking a moment of pure indulgence, Cakeholic is your destination for a culinary adventure that transcends the ordinary.
               Join us at Cakeholic, where each bite tells a story of dedication, creativity, and a love for the sweet symphony of flavors. Let us take you on a journey where confectionery becomes an art form, and every dessert is a masterpiece waiting to be savored.
             </p>
-            <button onClick={toggleContentExpansion} className="text-blue-500 underline focus:outline-none">
+            <button onClick={toggleContentExpansion} className="text-yellow focus:outline-none bg-black hover:bg-yellow-1 py-2 px-4 mt-10 rounded transition-all duration-300 ease-in-out">
               {isContentExpanded ? 'Read Less' : 'Read More'}
             </button>
         </div>
