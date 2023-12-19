@@ -60,8 +60,8 @@ export default function HomePage({handleAddToOrder}) {
           &gt;
         </button>
       </div>
-      <div className= "flex items-center justify-center m-20">
-        <ul className="flex">
+      <div className= "flex items-center justify-center overflow-hidden">
+        <ul className="flex max-w-[100vw] flex-wrap justify-center">
           {[
             { image: cupcakes, category: 'Cupcakes' },
             { image: tarts, category: 'Tarts' },
