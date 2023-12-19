@@ -9,6 +9,7 @@ import carousel1 from '../../images/carousel1.jpeg';
 import carousel2 from '../../images/carousel2.jpeg';
 import carousel3 from '../../images/carousel3.jpeg';
 import carousel4 from '../../images/carousel4.jpeg';
+import backgroundImage from '../../images/background-image.jpg';
 
 const carouselImages = [carousel1, carousel2, carousel3, carousel4];
 
@@ -38,96 +39,75 @@ export default function HomePage() {
     setIsContentExpanded((prevExpanded) => !prevExpanded);
   };
 
-  const buttonStyle = {
-    position: 'absolute',
-    top: '50%',
-    fontSize: '70px',
-    color: 'rgba(255, 255, 255, 0.7)',
-    background: 'transparent',
-    border: 'none',
-    cursor: 'pointer',
-  };
-
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <div className="carousel" style={{ position: 'relative', overflow: 'hidden' }}>
+    <div className="min-h-screen mt-20 mb-20">
+      <div className="relative overflow-hidden max-h-74" >
         <img
           src={carouselImages[currentIndex]}
           alt={`slide-${currentIndex}`}
-          style={{ width: '100%', height: 'auto', position: 'relative' }}
+          className="w-full h-74 object-cover"
         />
         <button
           onClick={() => setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)}
-          style={{ ...buttonStyle, left: '10px', transform: 'translateY(-50%)' }}
+          className="absolute top-1/2 left-4 text-4xl text-white bg-transparent border-none cursor-pointer transform -translate-y-1/2"
         >
           &lt;
         </button>
         <button
           onClick={() => setCurrentIndex((prev) => (prev + 1) % carouselImages.length)}
-          style={{ ...buttonStyle, right: '10px', transform: 'translateY(-50%)' }}
+          className="absolute top-1/2 right-4 text-4xl text-white bg-transparent border-none cursor-pointer transform -translate-y-1/2"
         >
           &gt;
         </button>
       </div>
-      <ul style={{ display: 'flex' }}>
-            <div>
-                <img src={cupcakes} alt="cupcakes" style={{ width: '200px', height: '200px' }}></img>
-                <Link to="/shop?category=Cupcakes">Shop Cupcakes</Link>
+      <div className= "flex items-center justify-center m-20">
+        <ul className="flex">
+          {[
+            { image: cupcakes, category: 'Cupcakes' },
+            { image: tarts, category: 'Tarts' },
+            { image: cakes, category: 'Cakes' },
+            { image: muffins, category: 'Muffins' },
+            { image: macarons, category: 'Macarons' },
+          ].map((item, index) => ( 
+            <div key={index} className="flex flex-col items-center m-3">
+              <img src={item.image} alt={item.category} className="w-32 h-32 mb-2" />
+              <Link to={`/shop?category=${item.category}`} className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-3 py-2 text-xl font-medium">
+                {item.category}
+              </Link>
             </div>
-            <div>
-                <img src={tarts} alt="tarts" style={{ width: '200px', height: '200px' }}></img>
-                <Link to="/shop?category=Tarts">Shop Tarts</Link>
-            </div>
-            <div>
-                <img src={cakes} alt="cakes" style={{ width: '200px', height: '200px' }}></img>
-                <Link to="/shop?category=Cakes">Shop Cakes</Link>
-            </div>
-            <div>
-                <img src={muffins} alt="muffins" style={{ width: '200px', height: '200px' }}></img>
-                <Link to="/shop?category=Muffins">Shop Muffins</Link>
-            </div>
-            <div>
-                <img src={macarons} alt="macarons" style={{ width: '200px', height: '200px' }}></img>
-                <Link to="/shop?category=Macarons">Shop Macarons</Link>
-            </div>
+          ))}
         </ul>
-      <div>
-        <h3>ABOUT US</h3>
-        <p>
-          {isContentExpanded
-            ? // Display the entire content when expanded
-              `Welcome to Cakeholic, where indulgence meets artistry in the world of confectionery! Nestled in the heart of the city, Cakeholic is a haven for dessert enthusiasts seeking a sweet escape. Our charming shop boasts an irresistible array of handcrafted delights, from decadent chocolate masterpieces to exquisite fruit-infused creations.
-
-              Step inside and be greeted by the heavenly aroma of freshly baked treats, each meticulously crafted by our skilled pastry chefs. Whether you're celebrating a special occasion or simply satisfying a sweet craving, Cakeholic offers a diverse menu catering to every palate. Indulge in our signature cakes, cupcakes, and pastries, each a testament to our commitment to quality and flavor.
-
-              At Cakeholic, we understand the importance of aesthetics, and our cakes are not just delicious but also visually stunning. Our passion for baking is evident in every detail, from the delicate icing to the intricate decorations that adorn each masterpiece. Join us at Cakeholic, where every bite is a celebration of sweetness and artistry, and let us make your dessert dreams come true.`
-            : // Display only a portion of the content with a "Read More" button
-              `Welcome to Cakeholic, where indulgence meets artistry in the world of confectionery! Nestled in the heart of the city, Cakeholic is a haven for dessert enthusiasts seeking a sweet escape.`}
-        </p>
-        <button onClick={toggleContentExpansion}>
-          {isContentExpanded ? 'Read Less' : 'Read More'}
-        </button>
       </div>
-      <div>
-            <h3>Our recent cakes</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {allCakeItems.slice(0, 6).map((cakeItem, index) => (
-                        <div key={index} style={{ marginBottom: '20px' }}>
-                        <img
-                            src={cakeItem.image}
-                            alt={`cake-${index}`}
-                            style={{
-                            width: '400px',
-                            height: '350px',
-                            marginBottom: '10px',
-                            }}
-                        />
-                        <p>{cakeItem.name}</p>
-                        <p>${cakeItem.price}</p>
-                        </div>
-                    ))}
-                </div>
+      <div className="mb-10 bg-cover bg-center relative" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="p-20 rounded-md bg-opacity-70 bg-gray-200 justify-evenly">
+            <h3 className="text-2xl font-bold mb-10">ABOUT US</h3>
+            <p className={isContentExpanded ? '' : 'line-clamp-3'}>
+              Welcome to Cakeholic, where indulgence meets artistry in the world of confectionery! 
+              Nestled in the heart of the city, Cakeholic is a haven for dessert enthusiasts seeking a sweet escape. Our charming shop boasts an irresistible array of handcrafted delights, from decadent chocolate masterpieces to exquisite fruit-infused creations.
+              At Cakeholic, we pride ourselves on the meticulous craftsmanship that goes into each and every delectable treat. Our skilled artisans, driven by a passion for perfection, elevate the art of baking to new heights, creating edible masterpieces that not only tantalize the taste buds but also captivate the eyes.
+              As you navigate the enchanting displays, you'll find yourself surrounded by a harmonious blend of aromas, colors, and textures, igniting a sense of anticipation and delight. Whether you're celebrating a special occasion, satisfying a sweet craving, or simply seeking a moment of pure indulgence, Cakeholic is your destination for a culinary adventure that transcends the ordinary.
+              Join us at Cakeholic, where each bite tells a story of dedication, creativity, and a love for the sweet symphony of flavors. Let us take you on a journey where confectionery becomes an art form, and every dessert is a masterpiece waiting to be savored.
+            </p>
+            <button onClick={toggleContentExpansion} className="text-blue-500 underline focus:outline-none">
+              {isContentExpanded ? 'Read Less' : 'Read More'}
+            </button>
+        </div>
+      </div>
+        <div>
+          <h3 className="text-3xl font-bold mt-20">Our recent cakes</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 mb-20 mx-20">
+            {allCakeItems.slice(0, 6).map((cakeItem, index) => (
+              <div key={index} className="mb-4">
+                <img
+                  src={cakeItem.image}
+                  alt={`cake-${index}`}
+                  className="w-full h-40 md:h-48 lg:h-56 object-cover mb-2 rounded-md"
+                />
+                <p className="text-sm md:text-base lg:text-lg font-bold">{cakeItem.name}</p>
+                <p className="text-md md:text-lg lg:text-xl font-bold">${cakeItem.price}</p>
+              </div>
+            ))}
+          </div>
         </div>
     </div>
   );
