@@ -51,9 +51,9 @@ export default function Header ({user, setUser}) {
       return (
         <div className="header fixed top-0 left-0 w-full sm:ml-0 sm:block bg-yellow z-20">
             <div className="flex items-center justify-between bg-purple md:px-10 py-4">
-                <div className="flex md:space-x-4">
-                    <Link to="/" className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-3 py-2 text-xl font-medium ">Home</Link>
-                    <Link to="/shop" className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-2 py-2 text-xl font-medium">Shop</Link> 
+                <div className="flex flex-wrap md:space-x-4">
+                    <Link to="/" className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-1 md:px-3 py-2 text-xl font-medium ">Home</Link>
+                    <Link to="/shop" className="text-black hover:bg-yellow-1 hover:text-white rounded-md md:px-2 py-2 text-xl font-medium">Shop</Link> 
                 </div>
                 
                 <h1 className="text-3xl md:text-5xl l text-black font-rubik">CAKEHOLIC</h1> 
@@ -67,9 +67,14 @@ export default function Header ({user, setUser}) {
                             <LuUserCircle2 /> 
                         </Link> {' '}
                         {/* Cart icon */}
-                        <div>
-                        <BsCart4 onClick={handleCartClick}/>
-                        <span>{cartItemCount}</span>
+                        <div className="flex flex-col items-end">
+                        <span className="absolute top-7 sm:top-[0.5rem] md:top-[0.5rem] right-9 md:right-[5.5rem] bg-black text-white rounded-full px-2 py-1 text-xs">
+                            {cartItemCount}
+                        </span>
+                        <BsCart4 
+                        style={{ fontSize: '1.7em', cursor: 'pointer', marginTop: '5px'}}
+                        onClick={handleCartClick}
+                        />
                         </div>
                         <Link to="/"  onClick={handleLogOut} className="text-black hover:bg-yellow-1 hover:text-white rounded-md px-3 py-2 text-2xl font-medium">
                         <LuLogOut />
