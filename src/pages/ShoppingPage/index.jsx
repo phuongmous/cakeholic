@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import * as itemsAPI from '../../utilities/items-api';
 import * as ordersAPI from '../../utilities/orders-api';
 import CakeList from '../../components/CakeList';
-import CartList from '../../components/CartList';
+import { useCart } from '../../components/CartContext';
 
 export default function ShoppingPage({ user, setUser }) {
   const [cakeItems, setCakeItems] = useState([]);
@@ -13,6 +13,7 @@ export default function ShoppingPage({ user, setUser }) {
   const categoriesRef = useRef([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const { openCart } = useCart();
 
   const fetchData = async () => {
     try {
@@ -40,25 +41,20 @@ export default function ShoppingPage({ user, setUser }) {
   }, [location.search, user]);
 
   const handleAddToOrder = async (itemId) => {
+    try {
     console.log('User:', user); // Log user to check its value
     if (user) {
       const updatedCart = await ordersAPI.addItemToCart(itemId);
       setCart(updatedCart);
+      openCart();
     } else {
       console.log('Redirecting to login'); // Log to check if this block is executed
       navigate('/login');
     }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
     
-  };
-
-  const handleChangeQty = async (itemId, newQty) => {
-    const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
-    setCart(updatedCart);
-  };
-
-  const handleCheckout = async () => {
-    await ordersAPI.checkout();
-    navigate('/profile');
   };
 
   const handleSearch = (event) => {
@@ -98,7 +94,6 @@ export default function ShoppingPage({ user, setUser }) {
         }
         handleAddToOrder={handleAddToOrder}
       />
-      <CartList order={cart} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout} />
     </div>
   );
 }

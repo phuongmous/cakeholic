@@ -1,7 +1,11 @@
 import CartItem from '../CartItem';
+import { useCart } from '../../components/CartContext';
 export default function CartList ({ order, handleChangeQty, handleCheckout }) {
     if (!order) return null;
-
+    const { closeCart } = useCart();
+    const handleClose = () => {
+        closeCart();
+      };
     const cartItems = order.cartItems.map(item =>
         <CartItem 
             cartItem={item}
@@ -14,6 +18,7 @@ export default function CartList ({ order, handleChangeQty, handleCheckout }) {
     return (
         <div>
             <div className="section-heading">
+            <button onClick={handleClose}>Close X</button>
                 {order.isPaid ?
                 <span>ORDER <span className="smaller">{order.orderId}</span></span>
                 :
