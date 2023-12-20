@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserInfo from '../../components/UserInfo';
 import OrderHistory from '../../components/OrderHistory';
 import * as ordersAPI from '../../utilities/orders-api';
+import backgroundImage from '../../images/cake-background.jpeg';
 
 export default function UserProfilePage({user, order}) {
   const [orderHistory, setOrderHistory] = useState([]);
@@ -21,8 +22,7 @@ export default function UserProfilePage({user, order}) {
   }, []);
 
   return (
-    <div>
-      <h2>User Profile</h2>
+    <div className="bg-cover bg-center mb-10 backdrop-blur" style={{ backgroundImage: `url(${backgroundImage})` }} >
       <UserInfo user={user} />
       <OrderHistory 
       orderHistory={orderHistory} 

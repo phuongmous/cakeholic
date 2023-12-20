@@ -4,7 +4,7 @@ import * as itemsAPI from '../../utilities/items-api';
 import * as ordersAPI from '../../utilities/orders-api';
 import CakeList from '../../components/CakeList';
 import { useCart } from '../../components/CartContext';
-
+import backgroundImage from '../../images/background-image-1.jpg';
 export default function ShoppingPage({ user, setUser }) {
   const [cakeItems, setCakeItems] = useState([]);
   const [activeCat, setActiveCat] = useState('');
@@ -18,7 +18,7 @@ export default function ShoppingPage({ user, setUser }) {
   const fetchData = async () => {
     try {
       const items = await itemsAPI.getAll();
-      categoriesRef.current = ['All Cakes', ...new Set(items.map((item) => item.category.name))];
+      categoriesRef.current = ['All-Cakes', ...new Set(items.map((item) => item.category.name))];
       setCakeItems(items);
       const params = new URLSearchParams(location.search);
       const categoryParam = params.get('category');
@@ -63,7 +63,7 @@ export default function ShoppingPage({ user, setUser }) {
 
   const generateCategoryLinks = () =>
     categoriesRef.current.map((category) => (
-        <Link to={category === 'All Cakes' ? '/shop' : `/shop?category=${encodeURIComponent(category)}`}>
+        <Link to={category === 'All-Cakes' ? '/shop' : `/shop?category=${encodeURIComponent(category)}`}>
           {category}
         </Link>
     ));
@@ -74,26 +74,38 @@ export default function ShoppingPage({ user, setUser }) {
   );
 
   return (
-    <div>
-      <div>{generateCategoryLinks()}</div>
-      <form>
-        <input
-          placeholder='🔎 Search Cakes'
-          type='text'
-          id='search'
-          name='search'
-          value={searchTerm}
-          onChange={handleSearch}
+    <div style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="flex flex-col min-h-screen mt-[8rem] mb-20 mx-2 sm:mx-20">
+        <div className="flex flex-wrap mb-8 space-x-3 sm:space-x-6 justify-center text-md sm:text-xl font-bold">
+          {generateCategoryLinks().map((link, index) => (
+        <a
+          key={index}
+          className="transition-transform transform hover:scale-110 hover:text-cadetblue"
+        >
+          {link}
+        </a>
+    ))}
+        </div>
+        <form className="mb-8">
+          <input
+            className="border border-black px-8 py-2 rounded"
+            placeholder='🔎 Search Cakes'
+            type='text'
+            id='search'
+            name='search'
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </form>
+        <CakeList 
+          cakeItems={
+            activeCat
+              ? filteredCakeItems.filter((item) => item.category.name === activeCat)
+              : filteredCakeItems
+          }
+          handleAddToOrder={handleAddToOrder}
         />
-      </form>
-      <CakeList
-        cakeItems={
-          activeCat
-            ? filteredCakeItems.filter((item) => item.category.name === activeCat)
-            : filteredCakeItems
-        }
-        handleAddToOrder={handleAddToOrder}
-      />
+      </div>
     </div>
   );
 }

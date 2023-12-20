@@ -17,6 +17,7 @@ export default {
         'yellow': '#fef3c7',
         'yellow-1': '#fcd34d',
         'black': '#000000',
+        'cadetblue': 'cadetblue'
       },
       fontFamily: {
         'rubik' : 'Rubik Bubbles',

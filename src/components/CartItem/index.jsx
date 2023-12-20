@@ -25,6 +25,5 @@ export default function CartItem({ cartItem,  isPaid, handleChangeQty}) {
             </div>
             <div className="ext-price">Total: ${cartItem.extPrice.toFixed(2)}</div>
         </div>
-
     );
 }

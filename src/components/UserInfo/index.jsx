@@ -1,13 +1,14 @@
 import React from 'react';
 
+
 export default function UserInfo ({ user }) {
     return (
-        <div>
-            <h3>Account Details</h3>
+        <div className="mt-[8rem] mb-10" >
+            <h3 className="text-xl font-bold mb-4">Account Details</h3>
             {user && (
-                <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    <li><strong>Full Name:</strong> {user.fullName}</li>
-                    <li><strong>Email:</strong> {user.email}</li>
+                <ul className="list-none text-cadetblue">
+                    <li className="mb-2">Full Name: {user.fullName}</li>
+                    <li>Email: {user.email}</li>
                 </ul>
             )}
         </div>
