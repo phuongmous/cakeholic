@@ -40,7 +40,7 @@ export default function HomePage({handleAddToOrder}) {
   };
 
   return (
-    <div className="min-h-screen mt-20">
+    <div>
       <div className="relative overflow-hidden max-h-74" >
         <img
           src={carouselImages[currentIndex]}
@@ -96,15 +96,15 @@ export default function HomePage({handleAddToOrder}) {
       </div>
         <div>
           <h3 className="text-3xl font-bold mt-20">OUR RECENT CAKES</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 mb-20 mx-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 mb-20 mx-20">
             {allCakeItems.slice(0, 6).map((cakeItem, index) => (
               <div key={index} className="mb-4">
                 <img
                   src={cakeItem.image}
                   alt={`cake-${index}`}
-                  className="w-full h-40 md:h-48 lg:h-56 object-cover mb-2 rounded-md"
+                  className="w-full h-42 md:h-[17rem] lg:h-56 object-cover mb-2 sm:mb-5 rounded-md"
                 />
-                <div className="text-sm mx-2 sm:h-8">
+                <div className="text-md mx-2 sm:h-6 sm:mb-5">
                   <div className="inline max-w-[80%]">
                   {cakeItem.name}
                   </div>

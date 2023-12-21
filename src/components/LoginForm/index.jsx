@@ -32,15 +32,22 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <br></br>
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <br></br>
-          <button type="submit" className="bg-black text-yellow py-2 px-4 rounded hover:bg-yellow hover:text-black">LOG IN</button>
+      <div className="sm:mx-[10rem] md:mx-[13rem] lg:mx-[20rem]">
+        <form autoComplete="off" onSubmit={handleSubmit} className="flex flex-col">
+          <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+          <label className="mb-2">Email</label>
+          <input 
+          className="sm:basis-2/4 md:basis-3/4 form-input border border-black rounded" 
+          type="text" name="email" value={credentials.email} onChange={handleChange} required />
+          </div>
+          <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
+          <label className="mb-2">Password</label>
+          <input 
+          className="basis-2/4 md:basis-3/4 form-input border border-black rounded"
+          type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          </div>
+          <button type="submit" className="bg-dark bg-opacity-20 text-black  py-1 px-5 mt-6 mx-[5.6rem] rounded transition-transform transform hover:scale-110">LOG IN</button>
+        
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>

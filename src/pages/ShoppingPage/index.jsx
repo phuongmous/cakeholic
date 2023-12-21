@@ -83,7 +83,7 @@ export default function ShoppingPage({ user, setUser }) {
       </h1>
     </div>
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col">
         <div className="flex flex-wrap my-8 space-x-3 sm:space-x-6 justify-center text-md sm:text-xl font-bold">
           {generateCategoryLinks().map((link, index) => (
         <a

@@ -30,6 +30,7 @@ export default function Header ({user, setUser}) {
     const handleCheckout = async () => {
         await ordersAPI.checkout();
         navigate('/profile');
+        setCart(null);
       };
 
     const handleLogOut = () => {
@@ -52,8 +53,8 @@ export default function Header ({user, setUser}) {
         <div className="header sticky top-0 left-0 w-full sm:ml-0 sm:block bg-white z-20">
             <div className="flex items-center justify-between bg-purple md:px-10 py-4">
                 <div className="flex flex-wrap md:space-x-4">
-                    <Link to="/" className="text-black transition-transform transform hover:scale-110 hover:text-cadetblue rounded-md px-1 md:px-3 py-2 text-xl font-medium ">Home</Link>
-                    <Link to="/shop" className="text-black transition-transform transform hover:scale-110 hover:text-cadetblue rounded-md md:px-2 py-2 text-xl font-medium">Shop</Link> 
+                    <Link to="/" className="text-black transition-transform transform hover:scale-110 hover:text-cadetblue rounded-md md:px-3 p-2 text-xl font-medium ">Home</Link>
+                    <Link to="/shop" className="text-black transition-transform transform hover:scale-110 hover:text-cadetblue rounded-md md:px-2 p-2 text-xl font-medium">Shop</Link> 
                 </div>
                 
                 <h1 className="text-3xl md:text-5xl l text-black font-rubik">CAKEHOLIC</h1> 

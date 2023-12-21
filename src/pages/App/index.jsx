@@ -15,7 +15,7 @@ import './App.css';
 export default function App() {
   const [user, setUser] = useState(getUser());
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex flex-col h-screen justify-between">
       <Header user={user} setUser={setUser} />
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -39,7 +39,7 @@ export default function CartList ({ order, handleChangeQty, handleCheckout }) {
             {cartItems.length ?
             <> 
             <div className="mb-4">{cartItems}</div>
-            <section className="flex items-center justify-between mx-6">
+            <section className="flex items-center justify-between mx-6 my-8">
                 {
                     order.isPaid ?
                     <span>TOTAL&nbsp;&nbsp;</span>
