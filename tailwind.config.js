@@ -14,9 +14,12 @@ export default {
     },
     extend: {
       colors: {
+        'white': '#fafafa',
+        'white-1': '#ffffff',
         'yellow': '#fef3c7',
         'yellow-1': '#fcd34d',
         'black': '#000000',
+        'dark': '#232323',
         'cadetblue': 'cadetblue'
       },
       fontFamily: {

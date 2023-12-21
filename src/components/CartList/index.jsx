@@ -16,10 +16,10 @@ export default function CartList ({ order, handleChangeQty, handleCheckout }) {
     );
 
     return (
-        <div className="p-4 bg-yellow rounded max-h-[51rem] sm:max-h-[46rem] overflow-y-auto">
+        <div className="p-4 bg-white rounded max-h-[51rem] sm:max-h-[46rem] overflow-y-auto">
             <div className="flex flex-col items-center mb-4">
                 <button 
-                className="bg-black text-yellow px-2 ml-0 mr-4 rounded-full text-xl self-start transition-transform transform hover:scale-110" 
+                className="text-black bg-dark bg-opacity-20 px-2 ml-0 mr-4 rounded text-xl self-start transition-transform transform hover:scale-110" 
                 onClick={handleClose}>
                     X
                 </button>
@@ -45,7 +45,7 @@ export default function CartList ({ order, handleChangeQty, handleCheckout }) {
                     <span>TOTAL&nbsp;&nbsp;</span>
                     :
                     <button
-                        className="bg-black text-yellow py-1 px-5 rounded transition-transform transform hover:scale-110"
+                        className="bg-dark bg-opacity-20 text-black  py-1 px-5 mx-4 rounded transition-transform transform hover:scale-110"
                         onClick={() => {
                             handleCheckout();
                             handleClose();

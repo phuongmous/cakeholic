@@ -3,8 +3,8 @@ import OrderHistoryItem from '../OrderHistoryItem';
 
 export default function OrderHistory ({orderHistory}) {
     return (
-    <div>
-      <h3  className="text-xl font-bold mb-4">Order History</h3>
+    <div className="pb-20">
+      <h3  className="text-xl text-white font-bold mb-4">Order History</h3>
       {orderHistory && orderHistory.length > 0 ? ( // Add a check for orderHistory
         <div>
           {orderHistory.map((order) => (

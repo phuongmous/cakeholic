@@ -40,7 +40,7 @@ export default function HomePage({handleAddToOrder}) {
   };
 
   return (
-    <div className="min-h-screen mt-20 mb-20">
+    <div className="min-h-screen mt-20">
       <div className="relative overflow-hidden max-h-74" >
         <img
           src={carouselImages[currentIndex]}
@@ -60,7 +60,8 @@ export default function HomePage({handleAddToOrder}) {
           &gt;
         </button>
       </div>
-      <div className= "flex items-center justify-center overflow-hidden">
+      <div className= "flex flex-col items-center justify-center overflow-hidden my-10">
+      <h3 className="text-2xl font-bold mb-4">BROWSING OUR COLLECTIONS:</h3>
         <ul className="flex max-w-[100vw] flex-wrap justify-center">
           {[
             { image: cupcakes, category: 'Cupcakes' },
@@ -79,7 +80,7 @@ export default function HomePage({handleAddToOrder}) {
         </ul>
       </div>
       <div className="mb-10 bg-cover bg-center relative" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <div className="p-20 rounded-md bg-opacity-70 bg-gray-200 justify-evenly">
+        <div className="p-20 rounded-md bg-opacity-70 bg-gray-200">
             <h3 className="text-2xl font-bold mb-10">ABOUT US</h3>
             <p className={isContentExpanded ? '' : 'line-clamp-3'}>
               Welcome to Cakeholic, where indulgence meets artistry in the world of confectionery! 
@@ -88,13 +89,13 @@ export default function HomePage({handleAddToOrder}) {
               As you navigate the enchanting displays, you'll find yourself surrounded by a harmonious blend of aromas, colors, and textures, igniting a sense of anticipation and delight. Whether you're celebrating a special occasion, satisfying a sweet craving, or simply seeking a moment of pure indulgence, Cakeholic is your destination for a culinary adventure that transcends the ordinary.
               Join us at Cakeholic, where each bite tells a story of dedication, creativity, and a love for the sweet symphony of flavors. Let us take you on a journey where confectionery becomes an art form, and every dessert is a masterpiece waiting to be savored.
             </p>
-            <button onClick={toggleContentExpansion} className="text-yellow focus:outline-none bg-black hover:bg-yellow-1 py-2 px-4 mt-10 rounded transition-all duration-300 ease-in-out">
+            <button onClick={toggleContentExpansion} className="text-black bg-white rounded font-bold transform hover:scale-110 hover:text-cadetblue py-2 px-4 mt-10 transition-all">
               {isContentExpanded ? 'Read Less' : 'Read More'}
             </button>
         </div>
       </div>
         <div>
-          <h3 className="text-3xl font-bold mt-20">Our recent cakes</h3>
+          <h3 className="text-3xl font-bold mt-20">OUR RECENT CAKES</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 mb-20 mx-20">
             {allCakeItems.slice(0, 6).map((cakeItem, index) => (
               <div key={index} className="mb-4">
@@ -103,8 +104,12 @@ export default function HomePage({handleAddToOrder}) {
                   alt={`cake-${index}`}
                   className="w-full h-40 md:h-48 lg:h-56 object-cover mb-2 rounded-md"
                 />
-                <p className="text-sm md:text-base lg:text-lg font-bold">{cakeItem.name}</p>
-                <p className="text-md md:text-lg lg:text-xl font-bold">${cakeItem.price}</p>
+                <div className="text-sm mx-2 sm:h-8">
+                  <div className="inline max-w-[80%]">
+                  {cakeItem.name}
+                  </div>
+                </div>
+                <p className="text-sm md:text-lg lg:text-xl font-bold">${cakeItem.price}</p>
               </div>
             ))}
           </div>

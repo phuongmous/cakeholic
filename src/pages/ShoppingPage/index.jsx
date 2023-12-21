@@ -5,6 +5,7 @@ import * as ordersAPI from '../../utilities/orders-api';
 import CakeList from '../../components/CakeList';
 import { useCart } from '../../components/CartContext';
 import backgroundImage from '../../images/background-image-1.jpg';
+import collectionBackground from '../../images/collection-background.jpg';
 export default function ShoppingPage({ user, setUser }) {
   const [cakeItems, setCakeItems] = useState([]);
   const [activeCat, setActiveCat] = useState('');
@@ -74,9 +75,16 @@ export default function ShoppingPage({ user, setUser }) {
   );
 
   return (
+    <div>
+      <div className="max-w-auto mx-auto relative">
+      <img src={collectionBackground} alt="Collection Background" className="w-full h-[30rem] object-cover" />
+      <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold">
+        {activeCat || 'All-Cakes'}
+      </h1>
+    </div>
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="flex flex-col min-h-screen mt-[8rem] mb-20 mx-2 sm:mx-20">
-        <div className="flex flex-wrap mb-8 space-x-3 sm:space-x-6 justify-center text-md sm:text-xl font-bold">
+      <div className="flex flex-col min-h-screen">
+        <div className="flex flex-wrap my-8 space-x-3 sm:space-x-6 justify-center text-md sm:text-xl font-bold">
           {generateCategoryLinks().map((link, index) => (
         <a
           key={index}
@@ -88,7 +96,7 @@ export default function ShoppingPage({ user, setUser }) {
         </div>
         <form className="mb-8">
           <input
-            className="border border-black px-8 py-2 rounded"
+            className="border border-black px-8 sm:px-40 py-2 rounded"
             placeholder='🔎 Search Cakes'
             type='text'
             id='search'
@@ -107,5 +115,6 @@ export default function ShoppingPage({ user, setUser }) {
         />
       </div>
     </div>
+  </div>
   );
 }

@@ -49,7 +49,7 @@ export default function Header ({user, setUser}) {
     const cartItemCount = cart ? cart.orderQty : 0;
 
       return (
-        <div className="header fixed top-0 left-0 w-full sm:ml-0 sm:block bg-yellow z-20">
+        <div className="header sticky top-0 left-0 w-full sm:ml-0 sm:block bg-white z-20">
             <div className="flex items-center justify-between bg-purple md:px-10 py-4">
                 <div className="flex flex-wrap md:space-x-4">
                     <Link to="/" className="text-black transition-transform transform hover:scale-110 hover:text-cadetblue rounded-md px-1 md:px-3 py-2 text-xl font-medium ">Home</Link>
