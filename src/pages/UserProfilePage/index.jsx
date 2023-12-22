@@ -5,14 +5,16 @@ import * as ordersAPI from '../../utilities/orders-api';
 import backgroundImage from '../../images/profile-background.jpg';
 
 export default function UserProfilePage({user, order}) {
+  // State to store user's order history
   const [orderHistory, setOrderHistory] = useState([]);
 
+  // useEffect to fetch the user's order history when the component mounts
   useEffect(() => {
-    // Fetch order history
+
+    // Function to fetch the user's order history
     const fetchOrderHistory = async () => {
       try {
         const orders = await ordersAPI.orderHistory();
-        console.log('ORDER', orders);
         setOrderHistory(orders);
       } catch (error) {
         console.error('Error fetching order history:', error);

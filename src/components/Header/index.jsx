@@ -11,43 +11,52 @@ export default function Header ({user, setUser}) {
     const navigate = useNavigate();
     const [cart, setCart] = useState(null);
     const { isCartOpen, openCart, closeCart } = useCart();
+    // Function to fetch the user's cart
     const getCart = async () => {
         const fetchedCart = await ordersAPI.getCart();
         setCart(fetchedCart);
         console.log('CART', fetchedCart);
       };
+
+    // useEffect to fetch the user's cart when the component mounts or cart is opened
     useEffect(() => {
         if (user) {
           getCart();
         }
       }, [user, isCartOpen]);
-
+    
+    // Function to handle quantity change for items in the cart
     const handleChangeQty = async (itemId, newQty) => {
         const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
         setCart(updatedCart);
       };
     
-    const handleCheckout = async () => {
+      // Function to handle checkout and navigate to the user's profile page
+      const handleCheckout = async () => {
         await ordersAPI.checkout();
         navigate('/profile');
         setCart(null);
       };
-
-    const handleLogOut = () => {
+    
+      // Function to handle user logout
+      const handleLogOut = () => {
         userService.logOut();
         setUser(null);
       };
-
-    const handleCartClick = () => {
+    
+      // Function to handle opening the cart
+      const handleCartClick = () => {
         getCart()
         openCart();
       };
     
-    const handleCartClose = () => {
+      // Function to handle closing the cart
+      const handleCartClose = () => {
         closeCart();
       };
 
-    const cartItemCount = cart ? cart.orderQty : 0;
+      // Variable to store the total item count in the cart
+      const cartItemCount = cart ? cart.orderQty : 0;
 
       return (
         <div className="header sticky top-0 left-0 w-full sm:ml-0 sm:block bg-white z-20">
@@ -86,13 +95,14 @@ export default function Header ({user, setUser}) {
                     )}
                 </div>
             </div>
+            {/* Display the cart list if the cart is open */}
             {isCartOpen && (
-        <div className="fixed top-0 right-0 h-full w-full bg-gray-800 bg-opacity-75 z-30">
-          <div className="absolute top-0 right-0 m-4">
-            <CartList order={cart} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout}/>
-          </div>
-        </div>
-      )}
+              <div className="fixed top-0 right-0 h-full w-full bg-gray-800 bg-opacity-75 z-30">
+                <div className="absolute top-0 right-0 m-4">
+                  <CartList order={cart} handleChangeQty={handleChangeQty} handleCheckout={handleCheckout}/>
+                </div>
+              </div>
+            )}
         </div>
       );
     }

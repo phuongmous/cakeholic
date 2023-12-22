@@ -23,6 +23,7 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
+      // Navigate back to the previous page or home on successful login
       navigate(-1, { replace: true });
     } catch (err) {
       console.error(err); // for debugging!
@@ -35,19 +36,22 @@ export default function LoginForm({ setUser }) {
       <div className="sm:mx-[10rem] md:mx-[13rem] lg:mx-[20rem]">
         <form autoComplete="off" onSubmit={handleSubmit} className="flex flex-col">
           <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
-          <label className="mb-2">Email</label>
-          <input 
-          className="sm:basis-2/4 md:basis-3/4 form-input border border-black rounded" 
-          type="text" name="email" value={credentials.email} onChange={handleChange} required />
+            <label className="mb-2">Email</label>
+            <input 
+            className="sm:basis-2/4 md:basis-3/4 form-input border border-black rounded" 
+            type="text" name="email" value={credentials.email} onChange={handleChange} required />
           </div>
           <div className="mb-4 flex flex-col sm:flex-row sm:justify-between items-center">
-          <label className="mb-2">Password</label>
-          <input 
-          className="basis-2/4 md:basis-3/4 form-input border border-black rounded"
-          type="password" name="password" value={credentials.password} onChange={handleChange} required />
+            <label className="mb-2">Password</label>
+            <input 
+            className="basis-2/4 md:basis-3/4 form-input border border-black rounded"
+            type="password" name="password" value={credentials.password} onChange={handleChange} required />
           </div>
-          <button type="submit" className="bg-dark bg-opacity-20 text-black  py-1 px-5 mt-6 mx-[5.6rem] rounded transition-transform transform hover:scale-110">LOG IN</button>
-        
+          <button 
+          type="submit" 
+          className="bg-dark bg-opacity-20 text-black  py-1 px-5 mt-6 mx-[5.6rem] rounded transition-transform transform hover:scale-110">
+          LOG IN
+          </button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>

@@ -11,15 +11,23 @@ export default function ShoppingPage({ user, setUser }) {
   const [activeCat, setActiveCat] = useState('');
   const [cart, setCart] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  // Reference for categories to generate links
   const categoriesRef = useRef([]);
   const navigate = useNavigate();
+  // Location hook to get current URL location
   const location = useLocation();
+  // Custom hook to access cart-related functionality
   const { openCart } = useCart();
 
+  // Fetch cake items and set initial state
   const fetchData = async () => {
     try {
       const items = await itemsAPI.getAll();
+
+      // Set categories including 'All-Cakes'
       categoriesRef.current = ['All-Cakes', ...new Set(items.map((item) => item.category.name))];
+
+      // Set cake items and active category based on URL parameter
       setCakeItems(items);
       const params = new URLSearchParams(location.search);
       const categoryParam = params.get('category');
@@ -29,6 +37,7 @@ export default function ShoppingPage({ user, setUser }) {
     }
   };
 
+  // Fetch user's cart on component mount and when URL changes
   const getCart = async () => {
     const cart = await ordersAPI.getCart();
     setCart(cart);
@@ -36,20 +45,23 @@ export default function ShoppingPage({ user, setUser }) {
 
   useEffect(() => {
     fetchData();
+    // Fetch user's cart if user is authenticated
     if (user) {
     getCart();
     }
   }, [location.search, user]);
 
+  // Add item to cart and open cart if user is authenticated; otherwise, redirect to login
   const handleAddToOrder = async (itemId) => {
     try {
-    console.log('User:', user); // Log user to check its value
     if (user) {
+      // Add item to the cart
       const updatedCart = await ordersAPI.addItemToCart(itemId);
+      // Update cart state and open the cart
       setCart(updatedCart);
       openCart();
     } else {
-      console.log('Redirecting to login'); // Log to check if this block is executed
+      // Redirect to login page if the user is not authenticated
       navigate('/login');
     }
     } catch (error) {
@@ -58,17 +70,20 @@ export default function ShoppingPage({ user, setUser }) {
     
   };
 
+  // Handle search input change
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  // Generate category links for navigation
   const generateCategoryLinks = () =>
     categoriesRef.current.map((category) => (
         <Link to={category === 'All-Cakes' ? '/shop' : `/shop?category=${encodeURIComponent(category)}`}>
           {category}
         </Link>
     ));
-
+  
+  // Filter cake items based on active category and search term
   const filteredCakeItems = cakeItems.filter((item) =>
     (!activeCat || item.category.name === activeCat) &&
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -81,18 +96,18 @@ export default function ShoppingPage({ user, setUser }) {
       <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold">
         {activeCat || 'All-Cakes'}
       </h1>
-    </div>
+      </div>
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="flex flex-col">
         <div className="flex flex-wrap my-8 space-x-3 sm:space-x-6 justify-center text-md sm:text-xl font-bold">
           {generateCategoryLinks().map((link, index) => (
-        <a
-          key={index}
-          className="transition-transform transform hover:scale-110 hover:text-cadetblue"
-        >
-          {link}
-        </a>
-    ))}
+            <a
+              key={index}
+              className="transition-transform transform hover:scale-110 hover:text-cadetblue"
+            >
+            {link}
+            </a>
+          ))}
         </div>
         <form className="mb-8">
           <input
@@ -113,8 +128,8 @@ export default function ShoppingPage({ user, setUser }) {
           }
           handleAddToOrder={handleAddToOrder}
         />
+        </div>
       </div>
     </div>
-  </div>
   );
 }

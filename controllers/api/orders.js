@@ -37,7 +37,9 @@ async function checkout(req, res) {
   res.json(cart);
 }
 
+// Get the order history of the authenticated user
 async function orderHistory(req, res) {
+  // Filter orders where isPaid is true and sort them by updatedAt in descending order
   const orders = await Order.find({user: req.user._id, isPaid: true}).sort({updatedAt: -1});
   res.json(orders);
 }

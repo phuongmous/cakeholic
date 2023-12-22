@@ -14,8 +14,11 @@ import backgroundImage from '../../images/background-image.jpg';
 const carouselImages = [carousel1, carousel2, carousel3, carousel4];
 
 export default function HomePage({handleAddToOrder}) {
+  // State to store all cake items fetched from the backend
   const [allCakeItems, setAllCakeItems] = useState([]);
+  // State to manage the current index for the carousel
   const [currentIndex, setCurrentIndex] = useState(0);
+  // State to control the expansion of content in the "ABOUT US" section
   const [isContentExpanded, setIsContentExpanded] = useState(false);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function HomePage({handleAddToOrder}) {
       .catch((error) => console.error('Error fetching cake items:', error));
   }, []); // Run only once when the component mounts
 
+  // Automatically switch the carousel image every 5 seconds
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
@@ -35,6 +39,7 @@ export default function HomePage({handleAddToOrder}) {
     return () => clearInterval(intervalId); // Cleanup the interval on component unmount
   }, []); // Re-run the effect when the number of images changes
 
+  // Toggle the expansion of content in the "ABOUT US" section
   const toggleContentExpansion = () => {
     setIsContentExpanded((prevExpanded) => !prevExpanded);
   };
@@ -61,7 +66,7 @@ export default function HomePage({handleAddToOrder}) {
         </button>
       </div>
       <div className= "flex flex-col items-center justify-center overflow-hidden my-10">
-      <h3 className="text-2xl font-bold mb-4">BROWSING OUR COLLECTIONS:</h3>
+        <h3 className="text-2xl font-bold mb-4">BROWSING OUR COLLECTIONS:</h3>
         <ul className="flex max-w-[100vw] flex-wrap justify-center">
           {[
             { image: cupcakes, category: 'Cupcakes' },
@@ -70,6 +75,7 @@ export default function HomePage({handleAddToOrder}) {
             { image: muffins, category: 'Muffins' },
             { image: macarons, category: 'Macarons' },
           ].map((item, index) => ( 
+            // Map through each category object to generate a list of clickable items
             <div key={index} className="flex flex-col items-center m-3 transition-transform transform hover:scale-110">
               <Link to={`/shop?category=${item.category}`} className="text-black px-3 py-2 text-xl font-medium">
                 <img src={item.image} alt={item.category} className="w-32 h-32 mb-2" />
