@@ -10,11 +10,12 @@ MEMORY 2G
 
 COPY . .
 RUN npm install
-RUN BACKGROUND npm run dev -- --host || npx nodemon server
 SECRET ENV DATABASE_URL
 RUN echo "secret is: $DATABASE_URL"
 SECRET ENV SECRET
 RUN echo "secret is: $SECRET"
+RUN BACKGROUND npx nodemon server
+RUN BACKGROUND npm run dev -- --host
 
 # Create a unique link to share the app in this runner.
 # Every time someone clicks the link, we'll wake up this staging server.
