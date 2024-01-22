@@ -14,6 +14,7 @@ SECRET ENV DATABASE_URL
 RUN echo "secret is: $DATABASE_URL"
 SECRET ENV SECRET
 RUN echo "secret is: $SECRET"
+
 RUN BACKGROUND npx nodemon server
 RUN BACKGROUND npm run dev -- --host
 
