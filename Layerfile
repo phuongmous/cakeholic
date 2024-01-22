@@ -1,23 +1,14 @@
-#This is an example webapp.io configuration for React!
 FROM vm/ubuntu:18.04
-
 RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
 RUN sudo npm install npm@8.19.4 -g
-
-# node is a memory hog
 MEMORY 2G
-
 COPY . .
 RUN npm install
 SECRET ENV DATABASE_URL
 RUN echo "secret is: $DATABASE_URL"
 SECRET ENV SECRET
 RUN echo "secret is: $SECRET"
-
 RUN BACKGROUND npx nodemon server
 RUN BACKGROUND npm run dev -- --host
-
-# Create a unique link to share the app in this runner.
-# Every time someone clicks the link, we'll wake up this staging server.
 EXPOSE WEBSITE http://localhost:5173
