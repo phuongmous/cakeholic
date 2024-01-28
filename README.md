@@ -5,7 +5,7 @@ Welcome to Cakeholic, a delightful e-commerce web application for a cake store. 
 ## Features
 
 ### User Authentication
-Cakeholic ensures a secure environment for users with encrypted password storage. Users can create accounts, log in securely, and manage their personal information. This feature provides a personalized experience and allows users to track their order history.
+Cakeholic ensures a secure environment for users with encrypted password. Users can create accounts, log in securely, and manage their personal information. This feature provides a personalized experience and allows users to track their order history.
 
 ### Shopping Cart
 Enjoy a hassle-free shopping experience with our intuitive shopping cart feature. Users can easily add and remove items, update quantities, and proceed to checkout with confidence. The shopping cart is designed for efficiency and simplicity.
